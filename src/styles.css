@@ -294,7 +294,7 @@
 .cta-feature { margin: 0; padding: 1.25rem; border: 1px solid var(--border); background: color-mix(in oklch, var(--card) 70%, transparent); }
 .cta-panel { background: var(--hero-background); border: 1px solid color-mix(in oklch, var(--hero-foreground) 10%, transparent); box-shadow: 0 40px 80px -40px color-mix(in oklch, var(--mineral) 45%, transparent); }
 .cta-glow { position: absolute; inset: -40% -10% auto auto; width: 70%; aspect-ratio: 1; border-radius: 9999px; background: radial-gradient(circle, color-mix(in oklch, var(--mineral) 45%, transparent), transparent 65%); filter: blur(20px); pointer-events: none; }
-.cta-mascot { position: absolute; right: -2rem; bottom: -1rem; width: min(42%, 380px); pointer-events: none; opacity: .95; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+.cta-mascot { position: absolute; right: 6%; top: 50%; translate: 0 -50%; width: min(30%, 300px); aspect-ratio: 1; object-fit: cover; border-radius: 9999px; pointer-events: none; box-shadow: 0 0 0 1px color-mix(in oklch, var(--hero-foreground) 12%, transparent), 0 0 0 14px color-mix(in oklch, var(--mineral) 10%, transparent), 0 30px 60px -20px color-mix(in oklch, var(--mineral) 55%, transparent); transition: transform .6s cubic-bezier(.22,1,.36,1); }
 .cta-panel:hover .cta-mascot { transform: translateY(-8px) rotate(-2deg); }
 .cta-accent { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; background: linear-gradient(100deg, var(--hero-foreground), var(--mineral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-@media (max-width: 767px) { .cta-mascot { width: 52%; opacity: .25; } }
+@media (max-width: 1023px) { .cta-mascot { display: none; } }
