@@ -16,6 +16,7 @@ import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as WorkspacesRouteImport } from './routes/workspaces'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as UUsernameRouteImport } from './routes/u.$username'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
 import { Route as AuthenticatedDashboardCreationsRouteImport } from './routes/_authenticated/dashboard.creations'
 import { Route as AuthenticatedDashboardProfileRouteImport } from './routes/_authenticated/dashboard.profile'
@@ -57,6 +58,11 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const UUsernameRoute = UUsernameRouteImport.update({
+  id: '/u/$username',
+  path: '/u/$username',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedDashboardIndexRoute =
   AuthenticatedDashboardIndexRouteImport.update({
@@ -108,6 +114,7 @@ export interface FileRoutesByFullPath {
   '/reset-password': typeof ResetPasswordRoute
   '/workspaces': typeof WorkspacesRoute
   '/dashboard': typeof AuthenticatedDashboardRouteWithChildren
+  '/u/$username': typeof UUsernameRoute
   '/dashboard/creations': typeof AuthenticatedDashboardCreationsRoute
   '/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/reset-password': typeof ResetPasswordRoute
   '/workspaces': typeof WorkspacesRoute
+  '/u/$username': typeof UUsernameRoute
   '/dashboard/creations': typeof AuthenticatedDashboardCreationsRoute
   '/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/workspaces': typeof WorkspacesRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRouteWithChildren
+  '/u/$username': typeof UUsernameRoute
   '/_authenticated/dashboard/creations': typeof AuthenticatedDashboardCreationsRoute
   '/_authenticated/dashboard/profile': typeof AuthenticatedDashboardProfileRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -156,6 +165,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/workspaces'
     | '/dashboard'
+    | '/u/$username'
     | '/dashboard/creations'
     | '/dashboard/profile'
     | '/dashboard/'
@@ -170,6 +180,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/reset-password'
     | '/workspaces'
+    | '/u/$username'
     | '/dashboard/creations'
     | '/dashboard/profile'
     | '/dashboard'
@@ -186,6 +197,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/workspaces'
     | '/_authenticated/dashboard'
+    | '/u/$username'
     | '/_authenticated/dashboard/creations'
     | '/_authenticated/dashboard/profile'
     | '/_authenticated/dashboard/'
@@ -202,6 +214,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   WorkspacesRoute: typeof WorkspacesRoute
+  UUsernameRoute: typeof UUsernameRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -254,6 +267,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/u/$username': {
+      id: '/u/$username'
+      path: '/u/$username'
+      fullPath: '/u/$username'
+      preLoaderRoute: typeof UUsernameRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/dashboard/': {
       id: '/_authenticated/dashboard/'
@@ -355,6 +375,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   WorkspacesRoute: WorkspacesRoute,
+  UUsernameRoute: UUsernameRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
