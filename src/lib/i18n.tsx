@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
+import { createAutoTranslator } from './autoTranslate';
+import { translateBatch } from './translate.functions';
 
 export type Key = 'projects' | 'workspaces' | 'mascot' | 'access' | 'eyebrow' | 'title1' | 'title2' | 'sub' | 'cta' | 'soon' | 'enter';
 type Row = [code: string, name: string, ...values: string[]];
@@ -69,7 +71,18 @@ const Ctx = createContext<{ lang: string; t: (k: Key) => string; setLang: (c: st
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState('en');
   useEffect(() => { setLangState(localStorage.getItem('agata-lang') ?? matchLanguage(navigator.languages ?? [navigator.language])); }, []);
-  useEffect(() => { document.documentElement.lang = lang; document.documentElement.dir = rtl.has(lang) ? 'rtl' : 'ltr'; }, [lang]);
+  const translator = useRef<ReturnType<typeof createAutoTranslator> | null>(null);
+  useEffect(() => {
+    const tr = createAutoTranslator((l, texts) => translateBatch({ data: { lang: l, texts } }));
+    translator.current = tr; tr.start();
+    return () => tr.stop();
+  }, []);
+  useEffect(() => {
+    document.documentElement.lang = lang; document.documentElement.dir = rtl.has(lang) ? 'rtl' : 'ltr';
+    // Let React render the keyed strings for the new language first, then translate the rest.
+    const id = requestAnimationFrame(() => translator.current?.setLang(lang));
+    return () => cancelAnimationFrame(id);
+  }, [lang]);
   const setLang = (c: string) => { localStorage.setItem('agata-lang', c); setLangState(c); };
   return <Ctx.Provider value={{ lang, setLang, t: k => (dict[lang] ?? dict.en)[k] }}>{children}</Ctx.Provider>;
 }
