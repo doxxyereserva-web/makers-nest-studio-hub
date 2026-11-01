@@ -18,7 +18,8 @@ export function AgataExperience({ children }: { children: ReactNode }) {
   const [hover, setHover] = useState(false);
   useEffect(() => { setHidden(localStorage.getItem('agata-mascot-hidden') === 'true'); }, []);
   const hide = (value: boolean) => { setHidden(value); setHelp(false); localStorage.setItem('agata-mascot-hidden', String(value)); };
-  const mood: Expression = help ? 'reading' : hover ? 'excited' : 'love';
+  /** Idle greets, hover makes her ponder the question, an open panel gets an eye-roll. */
+  const mood: Expression = help ? 'annoyed' : hover ? 'wonder' : 'greet';
   /** Signed-out visitors go to sign-in; signed-in users go straight to their space. */
   const access = () => navigate({ to: user ? '/dashboard' : '/auth' });
   return <Experience.Provider value={{ access }}>
@@ -35,7 +36,7 @@ export function AgataExperience({ children }: { children: ReactNode }) {
         ? <Button variant="glass" size="icon" className="float-right rounded-full" aria-label="Show mascot" title="Show mascot" onClick={() => hide(false)}><MessageCircle /></Button>
         : <div className="flex items-end justify-end gap-1">
             <Button variant="ghost" size="icon" className="size-7 rounded-full text-muted-foreground" aria-label="Hide mascot" title="Hide mascot" onClick={() => hide(true)}><EyeOff className="size-3" /></Button>
-            <Button variant="ghost" aria-label="Ask Ágata" title="Ask Ágata" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onClick={() => setHelp(v => !v)} className="companion-bubble h-auto rounded-full p-0"><Mascot mood={mood} className="size-[72px]" /></Button>
+            <Button variant="ghost" aria-label="Ask Ágata" title="Ask Ágata" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} onClick={() => setHelp(v => !v)} className="companion-bubble h-auto rounded-full p-0"><span key={mood} className="companion-mood"><Mascot mood={mood} className="size-[84px]" /></span></Button>
           </div>}
     </aside>
   </Experience.Provider>;

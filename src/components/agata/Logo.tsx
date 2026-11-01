@@ -7,6 +7,9 @@ import reading from '@/assets/mascot-reading.png.asset.json';
 import peek from '@/assets/mascot-peek.png.asset.json';
 import success from '@/assets/mascot-success.png.asset.json';
 import alert from '@/assets/mascot-alert.png.asset.json';
+import greet from '@/assets/mascot-headphones-happy.png.asset.json';
+import wonder from '@/assets/mascot-headphones-thinking.png.asset.json';
+import annoyed from '@/assets/mascot-headphones-grumpy.png.asset.json';
 
 export const mascotImage = mascot.url;
 export const expressions = {
@@ -19,6 +22,9 @@ export const expressions = {
   peek: { src: peek.url, label: 'Always here' },
   success: { src: success.url, label: 'All set' },
   alert: { src: alert.url, label: 'Heads up' },
+  greet: { src: greet.url, label: 'Hello' },
+  wonder: { src: wonder.url, label: 'Wondering' },
+  annoyed: { src: annoyed.url, label: 'Annoyed' },
 } as const;
 export type Expression = keyof typeof expressions;
 
