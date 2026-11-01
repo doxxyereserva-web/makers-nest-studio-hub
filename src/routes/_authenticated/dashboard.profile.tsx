@@ -69,10 +69,10 @@ function ProfileSettings() {
     <PageHeader title="Profile" text="How you appear on Ágata. Your profile also works as a repository of your creations and tools — you choose what is shown."
       action={<Button asChild variant="glass" className="rounded-full"><Link to="/u/$username" params={{ username: profile.username }}>View public page <ArrowUpRight /></Link></Button>} />
 
-    <div className="relative mt-8">
-      <Banner path={profile.banner_url} className="h-40 rounded-lg sm:h-52" />
+    <div className="relative mt-5">
+      <Banner path={profile.banner_url} className="h-32 rounded-lg sm:h-44" />
       <Button type="button" variant="glass" size="sm" className="absolute right-3 top-3 rounded-full" onClick={() => bannerInput.current?.click()}><ImagePlus /> Banner</Button>
-      <div className="absolute -bottom-10 left-6">
+      <div className="absolute -bottom-8 left-4 sm:left-6">
         <button type="button" onClick={() => avatarInput.current?.click()} className="group relative rounded-full ring-4 ring-background" aria-label="Change profile photo">
           <Avatar path={profile.avatar_url} name={profile.display_name ?? profile.username} className="size-16 text-xl sm:size-20" />
           <span className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/40 text-background opacity-0 transition-opacity group-hover:opacity-100"><Camera className="size-5" /></span>
