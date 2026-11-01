@@ -1,24 +1,16 @@
-import mascot from '@/assets/agata-original-mascot.png.asset.json';
-import love from '@/assets/mascot-love.png.asset.json';
-import excited from '@/assets/mascot-excited.png.asset.json';
-import curious from '@/assets/mascot-curious.png.asset.json';
-import sleepy from '@/assets/mascot-sleepy.png.asset.json';
-import reading from '@/assets/mascot-reading.png.asset.json';
-import peek from '@/assets/mascot-peek.png.asset.json';
-import success from '@/assets/mascot-success.png.asset.json';
-import alert from '@/assets/mascot-alert.png.asset.json';
+import mascotImg from '@/assets/agata-mascot.png';
 
-export const mascotImage = mascot.url;
+export const mascotImage = mascotImg;
 export const expressions = {
-  happy: { src: mascot.url, label: 'Happy' },
-  love: { src: love.url, label: 'Friendly' },
-  excited: { src: excited.url, label: 'Excited' },
-  curious: { src: curious.url, label: 'Curious' },
-  reading: { src: reading.url, label: 'Helpful' },
-  sleepy: { src: sleepy.url, label: 'Resting' },
-  peek: { src: peek.url, label: 'Always here' },
-  success: { src: success.url, label: 'All set' },
-  alert: { src: alert.url, label: 'Heads up' },
+  happy: { src: mascotImg, label: 'Happy' },
+  love: { src: mascotImg, label: 'Friendly' },
+  excited: { src: mascotImg, label: 'Excited' },
+  curious: { src: mascotImg, label: 'Curious' },
+  reading: { src: mascotImg, label: 'Helpful' },
+  sleepy: { src: mascotImg, label: 'Resting' },
+  peek: { src: mascotImg, label: 'Always here' },
+  success: { src: mascotImg, label: 'All set' },
+  alert: { src: mascotImg, label: 'Heads up' },
 } as const;
 export type Expression = keyof typeof expressions;
 
