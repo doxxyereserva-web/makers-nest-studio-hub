@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { motion, useReducedMotion } from 'framer-motion';
+import type React from 'react';
 import type { ReactNode } from 'react';
 import { Wordmark } from './Logo';
 
