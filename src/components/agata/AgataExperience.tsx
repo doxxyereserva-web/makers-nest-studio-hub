@@ -18,7 +18,8 @@ export function AgataExperience({ children }: { children: ReactNode }) {
   const [hover, setHover] = useState(false);
   useEffect(() => { setHidden(localStorage.getItem('agata-mascot-hidden') === 'true'); }, []);
   const hide = (value: boolean) => { setHidden(value); setHelp(false); localStorage.setItem('agata-mascot-hidden', String(value)); };
-  const mood: Expression = help ? 'reading' : hover ? 'excited' : 'love';
+  /** Idle greets, hover makes her ponder the question, an open panel gets an eye-roll. */
+  const mood: Expression = help ? 'annoyed' : hover ? 'wonder' : 'greet';
   /** Signed-out visitors go to sign-in; signed-in users go straight to their space. */
   const access = () => navigate({ to: user ? '/dashboard' : '/auth' });
   return <Experience.Provider value={{ access }}>
