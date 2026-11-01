@@ -241,6 +241,11 @@
 .mascot-tile { background: var(--collection-surface); border: 1px solid var(--border); }
 .companion-bubble { animation: agata-float 5s ease-in-out infinite; }
 @keyframes agata-float { 50% { transform: translateY(-4px); } }
+.companion-bubble .mascot-mark { border-radius: 0; object-fit: contain; overflow: visible; filter: drop-shadow(0 12px 20px color-mix(in oklch, var(--foreground) 25%, transparent)) drop-shadow(0 0 26px color-mix(in oklch, var(--mineral) 30%, transparent)); transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
+.companion-bubble:hover .mascot-mark { transform: scale(1.09) rotate(-4deg); }
+.companion-bubble:active .mascot-mark { transform: scale(.92); }
+.companion-mood { display: block; animation: agata-pop .55s cubic-bezier(.34,1.56,.64,1); }
+@keyframes agata-pop { from { transform: scale(.6) rotate(-10deg); opacity: .2; } }
 :root {
   --hero-background: oklch(0.985 0.003 300);
   --hero-foreground: oklch(0.19 0.012 295);
