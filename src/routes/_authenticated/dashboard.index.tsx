@@ -41,9 +41,9 @@ function Overview() {
       <div><p className="text-sm text-muted-foreground">Welcome{name ? ',' : ''}</p><h1 className="text-2xl font-normal tracking-tight sm:text-3xl">{name ?? 'creator'}</h1></div>
     </div>
 
-    <dl className="grid border-b sm:grid-cols-3">
-      {stats.map(s => <Link key={s.label} to={s.to} className="group flex items-end justify-between border-b py-4 sm:border-b-0 sm:border-r sm:px-6 sm:first:ps-0 sm:last:border-r-0">
-        <div><dt className="text-xs text-muted-foreground">{s.label}</dt><dd className="mt-2 text-3xl font-light tabular-nums">{s.value ?? '–'}</dd></div>
+    <dl className="grid grid-cols-3 border-b">
+      {stats.map(s => <Link key={s.label} to={s.to} className="group flex min-w-0 items-end justify-between gap-1 border-r px-3 py-4 first:ps-0 last:border-r-0 sm:px-5">
+        <div><dt className="truncate text-xs text-muted-foreground">{s.label}</dt><dd className="mt-2 text-3xl font-light tabular-nums">{s.value ?? '–'}</dd></div>
         <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       </Link>)}
     </dl>

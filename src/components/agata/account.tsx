@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { Mascot, type Expression } from './Logo';
 import { useMediaUrl } from '@/lib/media';
 import type { Database } from '@/integrations/supabase/types';
@@ -35,9 +35,10 @@ export function EmptyState({ mood = 'curious', title, text, action }: { mood?: E
 
 export function Avatar({ path, name, className = 'size-10' }: { path?: string | null; name?: string | null; className?: string }) {
   const url = useMediaUrl(path);
+  const [failed, setFailed] = useState<string | null>(null);
   const initial = (name ?? '?').trim().charAt(0).toUpperCase() || '?';
-  return url
-    ? <img src={url} alt="" className={`shrink-0 rounded-full object-cover ${className}`} />
+  return url && failed !== url
+    ? <img src={url} alt="" referrerPolicy="no-referrer" onError={() => setFailed(url)} className={`shrink-0 rounded-full object-cover ${className}`} />
     : <span aria-hidden className={`flex shrink-0 items-center justify-center rounded-full bg-secondary text-sm text-mineral ${className}`}>{initial}</span>;
 }
 
