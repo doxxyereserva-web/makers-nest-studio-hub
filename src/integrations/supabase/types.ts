@@ -246,6 +246,27 @@ export type Database = {
           },
         ]
       }
+      ui_translations: {
+        Row: {
+          created_at: string
+          lang: string
+          source: string
+          translated: string
+        }
+        Insert: {
+          created_at?: string
+          lang: string
+          source: string
+          translated: string
+        }
+        Update: {
+          created_at?: string
+          lang?: string
+          source?: string
+          translated?: string
+        }
+        Relationships: []
+      }
       user_badges: {
         Row: {
           awarded_at: string
