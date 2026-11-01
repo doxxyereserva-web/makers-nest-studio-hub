@@ -47,7 +47,6 @@ function Home() {
       <div className="section-shell hero-content relative">
         <motion.div className="hero-copy max-w-xl" style={reduced ? undefined : { y: copyY, rotateX: copyRot, opacity: copyOpacity, transformOrigin: '50% 0%' }} initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9 }}>
                     <h1 className="hero-title font-normal">{t('title1')}<br />{t('title2')}</h1>
-          <p className="mt-6 max-w-sm text-base leading-relaxed text-hero-muted">{t('sub')}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-6 text-hero-background hover:bg-hero-foreground/90">{accessLabel} <ArrowRight /></Button>
             <Button asChild variant="glass" size="lg" className="h-12 rounded-full px-6"><Link to="/projects">{t('projects')}</Link></Button>
