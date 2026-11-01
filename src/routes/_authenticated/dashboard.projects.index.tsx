@@ -51,7 +51,7 @@ function Projects() {
     <PageHeader title="Projects" text="Each project carries its purpose, guide, MCP connection, skill download, available models and Lovable API setup." action={data?.length ? add : undefined} />
     {data && !data.length && <EmptyState mood="reading" title="No projects yet" text="Start a project on your own or inside a workspace. You can fill in each part as it takes shape." action={add} />}
     {!!data?.length && <ul className="divide-y">
-      {data.map(p => <li key={p.id}><Link to="/dashboard/projects/$id" params={{ id: p.id }} className="group flex items-center justify-between gap-6 py-6">
+      {data.map(p => <li key={p.id}><Link to="/dashboard/projects/$id" params={{ id: p.id }} className="group flex items-center justify-between gap-4 py-6">
         <div className="min-w-0"><div className="flex flex-wrap items-center gap-2"><p className="truncate text-base">{p.name}</p>
           <Pill>{p.workspaces?.name ?? 'Personal'}</Pill><Pill>{p.visibility === 'public' ? <><Globe className="size-3" />Public</> : <><Lock className="size-3" />Private</>}</Pill></div>
           {p.purpose && <p className="mt-1 line-clamp-1 text-sm text-muted-foreground">{p.purpose}</p>}</div>

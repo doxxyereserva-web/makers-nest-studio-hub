@@ -74,7 +74,7 @@ function ProfileSettings() {
       <Button type="button" variant="glass" size="sm" className="absolute right-3 top-3 rounded-full" onClick={() => bannerInput.current?.click()}><ImagePlus /> Banner</Button>
       <div className="absolute -bottom-10 left-6">
         <button type="button" onClick={() => avatarInput.current?.click()} className="group relative rounded-full ring-4 ring-background" aria-label="Change profile photo">
-          <Avatar path={profile.avatar_url} name={profile.display_name ?? profile.username} className="size-24 text-2xl" />
+          <Avatar path={profile.avatar_url} name={profile.display_name ?? profile.username} className="size-16 text-xl sm:size-20" />
           <span className="absolute inset-0 flex items-center justify-center rounded-full bg-foreground/40 text-background opacity-0 transition-opacity group-hover:opacity-100"><Camera className="size-5" /></span>
         </button>
       </div>
@@ -82,8 +82,8 @@ function ProfileSettings() {
       <input ref={bannerInput} type="file" accept="image/*" hidden onChange={e => upload('banner', e.target.files?.[0])} />
     </div>
 
-    <form onSubmit={submit} className="mt-16 grid max-w-2xl gap-6">
-      <div className="grid gap-6 sm:grid-cols-2">
+    <form onSubmit={submit} className="mt-8 grid max-w-2xl gap-4">
+      <div className="grid gap-4 sm:grid-cols-2">
         <div className="grid gap-1.5"><Label htmlFor="display">Display name</Label><Input id="display" maxLength={60} value={form.display_name} onChange={e => setForm(f => ({ ...f, display_name: e.target.value }))} /></div>
         <div className="grid gap-1.5"><Label htmlFor="username">Username</Label><Input id="username" maxLength={24} value={form.username} onChange={e => setForm(f => ({ ...f, username: e.target.value }))} /></div>
       </div>
@@ -107,7 +107,7 @@ function ProfileSettings() {
 }
 
 function Toggle({ id, label, text, checked, onChange }: { id: string; label: string; text: string; checked: boolean; onChange: (v: boolean) => void }) {
-  return <div className="flex items-start justify-between gap-6 p-5">
+  return <div className="flex items-start justify-between gap-4 p-4">
     <div><Label htmlFor={id}>{label}</Label><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{text}</p></div>
     <Switch id={id} checked={checked} onCheckedChange={onChange} />
   </div>;

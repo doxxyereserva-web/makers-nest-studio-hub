@@ -50,7 +50,7 @@ function Overview() {
 
     <section className="mt-8">
       <h2 className="text-lg">{empty ? 'Start here' : 'Keep going'}</h2>
-      <div className="mt-5 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-3">
+      <div className="mt-3 grid gap-px overflow-hidden rounded-lg border bg-border sm:grid-cols-3">
         <Step title="Finish your profile" text="Add a banner, photo and a short bio so people know your work." to="/dashboard/profile" />
         <Step title="Add a creation" text="Keep scripts, VFX, models and tools in one place. Private by default." to="/dashboard/creations" />
         <Step title="Open a workspace" text="Bring your team in, split into groups and share projects." to="/dashboard/workspaces" />
