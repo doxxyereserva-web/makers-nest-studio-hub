@@ -286,7 +286,7 @@ button.companion-bubble { overflow: visible; }
 }
 
 /* 3D interactions */
-.btn-3d { position: relative; overflow: hidden; transform-style: preserve-3d; transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, background-color .2s, color .2s; will-change: transform; }
+.btn-3d { overflow: hidden; transform-style: preserve-3d; transition: transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s, background-color .2s, color .2s; will-change: transform; }
 .btn-3d::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, color-mix(in oklch, var(--background) 45%, transparent) 50%, transparent 70%); transform: translateX(-120%); transition: transform .7s cubic-bezier(.22,1,.36,1); pointer-events: none; }
 .btn-3d:hover:not(:disabled) { transform: perspective(600px) translateY(-3px) rotateX(8deg) scale(1.03); box-shadow: 0 14px 28px -10px color-mix(in oklch, var(--foreground) 45%, transparent), 0 4px 0 -1px color-mix(in oklch, var(--foreground) 18%, transparent); }
 .btn-3d:hover:not(:disabled)::after { transform: translateX(120%); }
@@ -307,3 +307,5 @@ button.companion-bubble { overflow: visible; }
 .cta-panel:hover .cta-mascot { transform: translateY(-8px) rotate(-2deg); }
 .cta-accent { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; background: linear-gradient(100deg, var(--hero-foreground), var(--mineral)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 1023px) { .cta-mascot { display: none; } }
+
+.profile-banner { background: radial-gradient(120% 140% at 0% 0%, color-mix(in oklch, var(--mineral) 35%, transparent), transparent 60%), linear-gradient(135deg, var(--secondary), var(--collection-surface)); }
