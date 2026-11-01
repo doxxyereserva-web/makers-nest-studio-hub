@@ -1,14 +1,26 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { motion, useReducedMotion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { useRef } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check, Award, FolderGit2, Image as ImageIcon, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Footer, Reveal, Tilt } from '@/components/agata/primitives';
-import { mascotImage } from '@/components/agata/Logo';
+import { mascotImage, expressions } from '@/components/agata/Logo';
 import { useAgata } from '@/components/agata/AgataExperience';
 import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/lib/i18n';
 import { projectModules, workspaceSpaces } from '@/lib/platform';
+
+const startSteps = [
+  { title: 'Create your account', text: 'Sign in with Google, Apple or email. Your profile and username are ready in seconds.' },
+  { title: 'Set up a workspace', text: 'Work solo or invite your team. Roles keep owners, admins and members in their lane.' },
+  { title: 'Start a project', text: 'Give it a purpose and a guide, then plug it into the tools you already use.' },
+];
+const profileFeatures = [
+  { icon: ImageIcon, title: 'Banner & avatar', text: 'Make your page recognisably yours.' },
+  { icon: Award, title: 'Badges', text: 'Earn marks for milestones and early support.' },
+  { icon: FolderGit2, title: 'Creations repository', text: 'Store files, tools and links in one place.' },
+  { icon: Lock, title: 'Privacy controls', text: 'Make any creation public or private.' },
+];
 
 export const Route = createFileRoute('/')({
   head: () => ({ meta: [
@@ -68,11 +80,49 @@ function Home() {
       <div className="divide-y border-y">{workspaceSpaces.map((s, i) => <Reveal key={s.title} delay={i * .08} className="py-6"><Tilt><h3 className="font-medium">{s.title}</h3><p className="mt-1 text-sm text-muted-foreground">{s.text}</p></Tilt></Reveal>)}</div>
     </div></section>
 
-    <section className="section-shell py-32"><Reveal className="flex flex-col items-start gap-8 sm:flex-row sm:items-end sm:justify-between">
-      <h2 className="section-title max-w-lg">Be there when it opens.</h2>
-      <div className="flex flex-wrap gap-3">
-        <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-7 text-hero-background hover:bg-hero-foreground/90">{accessLabel} <ArrowRight /></Button>
-        <Button asChild variant="glass" size="lg" className="h-12 rounded-full px-6"><Link to="/projects">{t('projects')}</Link></Button>
+    <section className="section-shell py-32">
+      <Reveal className="max-w-2xl">
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-mineral">How it starts</p>
+        <h2 className="section-title mt-4">Three steps from sign-up to your first build.</h2>
+      </Reveal>
+      <ol className="mt-16 grid gap-6 md:grid-cols-3">{startSteps.map((s, i) => <Reveal key={s.title} delay={i * .1}>
+        <Tilt className="cta-step h-full">
+          <span className="cta-step-num">{String(i + 1).padStart(2, '0')}</span>
+          <h3 className="mt-6 text-lg font-medium">{s.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+        </Tilt>
+      </Reveal>)}</ol>
+    </section>
+
+    <section className="section-shell pb-32">
+      <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_1fr]">
+        <Reveal>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-mineral">Your profile</p>
+          <h2 className="section-title mt-4">A home for your work — public or private, your call.</h2>
+          <p className="mt-5 max-w-md leading-relaxed text-muted-foreground">Every account comes with a profile that doubles as a repository for your creations and tools. Share what you want, keep the rest to yourself.</p>
+        </Reveal>
+        <ul className="grid gap-3 sm:grid-cols-2">{profileFeatures.map((f, i) => <Reveal key={f.title} delay={i * .06}>
+          <Tilt className="cta-feature h-full"><f.icon className="size-5 text-mineral" /><h3 className="mt-4 text-sm font-medium">{f.title}</h3><p className="mt-1 text-xs leading-relaxed text-muted-foreground">{f.text}</p></Tilt>
+        </Reveal>)}</ul>
+      </div>
+    </section>
+
+    <section className="section-shell pb-16"><Reveal>
+      <div className="cta-panel relative overflow-hidden rounded-[2rem] px-8 py-16 sm:px-14 sm:py-20">
+        <div className="cta-glow" aria-hidden />
+        <img src={expressions.peek.src} alt="" aria-hidden className="cta-mascot" />
+        <div className="relative max-w-xl">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-hero-muted">Early access</p>
+          <h2 className="mt-4 text-4xl font-normal leading-[1.08] tracking-tight text-hero-foreground sm:text-5xl">Be there <span className="cta-accent">when it opens.</span></h2>
+          <p className="mt-5 max-w-md leading-relaxed text-hero-muted">Create your account now to claim your username, set up your first workspace and get the early member badge.</p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-7 text-hero-background hover:bg-hero-foreground/90">{accessLabel} <ArrowRight /></Button>
+            <Button asChild variant="glass" size="lg" className="h-12 rounded-full px-6"><Link to="/projects">{t('projects')}</Link></Button>
+          </div>
+          <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-xs text-hero-muted">
+            {['Free to join', 'Google, Apple or email', 'Private by default'].map((x) => <li key={x} className="flex items-center gap-2"><Check className="size-3.5 text-mineral" />{x}</li>)}
+          </ul>
+        </div>
       </div>
     </Reveal></section>
     <Footer />
