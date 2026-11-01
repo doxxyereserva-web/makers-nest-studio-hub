@@ -82,7 +82,7 @@ function ProfileSettings() {
       <input ref={bannerInput} type="file" accept="image/*" hidden onChange={e => upload('banner', e.target.files?.[0])} />
     </div>
 
-    <form onSubmit={submit} className="mt-8 grid max-w-2xl gap-4">
+    <form onSubmit={submit} className="mt-14 grid max-w-2xl gap-4">
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="grid gap-1.5"><Label htmlFor="display">Display name</Label><Input id="display" maxLength={60} value={form.display_name} onChange={e => setForm(f => ({ ...f, display_name: e.target.value }))} /></div>
         <div className="grid gap-1.5"><Label htmlFor="username">Username</Label><Input id="username" maxLength={24} value={form.username} onChange={e => setForm(f => ({ ...f, username: e.target.value }))} /></div>
