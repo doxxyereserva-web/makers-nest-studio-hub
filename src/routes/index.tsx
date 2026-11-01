@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Footer, Reveal } from '@/components/agata/primitives';
 import { mascotImage } from '@/components/agata/Logo';
 import { useAgata } from '@/components/agata/AgataExperience';
+import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/lib/i18n';
 import { projectModules, workspaceSpaces } from '@/lib/platform';
 
@@ -21,7 +22,8 @@ export const Route = createFileRoute('/')({
 });
 
 function Home() {
-  const { t } = useI18n(); const agata = useAgata(); const reduced = useReducedMotion();
+  const { t } = useI18n(); const agata = useAgata(); const reduced = useReducedMotion(); const { user } = useAuth();
+  const accessLabel = user ? t('enter') : t('cta');
   return <main>
     <section className="hero-scene relative overflow-hidden">
       <img src={mascotImage} alt="Ágata, the hooded mascot, holding an agate crystal" className="hero-mascot" />
@@ -32,7 +34,7 @@ function Home() {
           <h1 className="hero-title mt-6 font-normal">{t('title1')}<br />{t('title2')}</h1>
           <p className="mt-6 max-w-sm text-base leading-relaxed text-hero-muted">{t('sub')}</p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-6 text-hero-background hover:bg-hero-foreground/90">{t('cta')} <ArrowRight /></Button>
+            <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-6 text-hero-background hover:bg-hero-foreground/90">{accessLabel} <ArrowRight /></Button>
             <Button asChild variant="glass" size="lg" className="h-12 rounded-full px-6"><Link to="/projects">{t('projects')}</Link></Button>
           </div>
         </motion.div>
@@ -55,7 +57,7 @@ function Home() {
     <section className="section-shell py-32"><Reveal className="flex flex-col items-start gap-8 sm:flex-row sm:items-end sm:justify-between">
       <h2 className="section-title max-w-lg">Be there when it opens.</h2>
       <div className="flex flex-wrap gap-3">
-        <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-7 text-hero-background hover:bg-hero-foreground/90">{t('cta')} <ArrowRight /></Button>
+        <Button onClick={agata.access} className="h-12 rounded-full bg-hero-foreground px-7 text-hero-background hover:bg-hero-foreground/90">{accessLabel} <ArrowRight /></Button>
         <Button asChild variant="glass" size="lg" className="h-12 rounded-full px-6"><Link to="/projects">{t('projects')}</Link></Button>
       </div>
     </Reveal></section>
