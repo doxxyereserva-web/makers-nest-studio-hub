@@ -240,6 +240,7 @@
 }
 .mascot-tile { background: var(--collection-surface); border: 1px solid var(--border); }
 .companion-bubble { animation: agata-float 5s ease-in-out infinite; }
+button.companion-bubble { overflow: visible; }
 @keyframes agata-float { 50% { transform: translateY(-4px); } }
 .companion-bubble .mascot-mark { border-radius: 0; object-fit: contain; overflow: visible; filter: drop-shadow(0 12px 20px color-mix(in oklch, var(--foreground) 25%, transparent)) drop-shadow(0 0 26px color-mix(in oklch, var(--mineral) 30%, transparent)); transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
 .companion-bubble:hover .mascot-mark { transform: scale(1.09) rotate(-4deg); }
