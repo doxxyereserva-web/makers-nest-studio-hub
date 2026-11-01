@@ -1,9 +1,9 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { ArrowRight, EyeOff, MessageCircle, X } from 'lucide-react';
-import { Link } from '@tanstack/react-router';
+import { Link, useNavigate } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { useI18n } from '@/lib/i18n';
+import { useAuth } from '@/lib/auth';
 import { Mascot, type Expression } from './Logo';
 
 const Experience = createContext<{ access: () => void }>({ access: () => {} });
@@ -11,23 +11,18 @@ export const useAgata = () => useContext(Experience);
 
 export function AgataExperience({ children }: { children: ReactNode }) {
   const { t } = useI18n();
-  const [accessOpen, setAccessOpen] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [hidden, setHidden] = useState(false);
   const [help, setHelp] = useState(false);
   const [hover, setHover] = useState(false);
   useEffect(() => { setHidden(localStorage.getItem('agata-mascot-hidden') === 'true'); }, []);
   const hide = (value: boolean) => { setHidden(value); setHelp(false); localStorage.setItem('agata-mascot-hidden', String(value)); };
   const mood: Expression = help ? 'reading' : hover ? 'excited' : 'love';
-  return <Experience.Provider value={{ access: () => setAccessOpen(true) }}>
+  /** Signed-out visitors go to sign-in; signed-in users go straight to their space. */
+  const access = () => navigate({ to: user ? '/dashboard' : '/auth' });
+  return <Experience.Provider value={{ access }}>
     {children}
-    <Dialog open={accessOpen} onOpenChange={setAccessOpen}>
-      <DialogContent className="rounded-lg">
-        <Mascot mood="curious" className="size-20" />
-        <DialogTitle className="text-2xl font-normal">{t('access')}</DialogTitle>
-        <DialogDescription className="leading-relaxed">Ágata is still being built. Sign-up opens when the first workspaces are ready.</DialogDescription>
-        <p className="mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-secondary px-3 py-1 text-xs text-mineral">{t('soon')}</p>
-      </DialogContent>
-    </Dialog>
     <aside className="companion fixed bottom-5 right-5 z-30">
       {help && !hidden && <div className="fixed inset-x-3 top-20 rounded-lg border bg-card p-5 shadow-lg sm:static sm:mb-3 sm:w-72">
         <div className="flex items-center justify-between"><p className="text-sm font-medium">Need help?</p><Button variant="ghost" size="icon" aria-label="Close" onClick={() => setHelp(false)}><X /></Button></div>

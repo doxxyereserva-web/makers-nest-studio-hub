@@ -17,6 +17,7 @@ import { Nav } from "@/components/agata/Nav";
 import { AgataExperience } from "@/components/agata/AgataExperience";
 import { MotionConfig } from "framer-motion";
 import { LanguageProvider } from "@/lib/i18n";
+import { AuthProvider } from "@/lib/auth";
 
 function NotFoundComponent() {
   return (
@@ -109,6 +110,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <ThemeProvider>
         <LanguageProvider>
         <MotionConfig reducedMotion="user">
@@ -119,6 +121,7 @@ function RootComponent() {
         </MotionConfig>
       </LanguageProvider>
       </ThemeProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }
