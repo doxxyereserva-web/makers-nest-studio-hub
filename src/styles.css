@@ -254,7 +254,10 @@
   --hero-shade: linear-gradient(90deg, var(--hero-background) 0%, var(--hero-background) 30%, transparent 75%);
 }
 :root .hero-mascot { mix-blend-mode: multiply; }
-.dark .hero-mascot { mix-blend-mode: normal; filter: brightness(.82); }
+.dark .hero-mascot { mix-blend-mode: normal; }
+.hero-mascot-dark { display: none; }
+.dark .hero-mascot-light { display: none; }
+.dark .hero-mascot-dark { display: block; }
 
 /* Liquid glass surfaces — bars and buttons only. */
 :root {

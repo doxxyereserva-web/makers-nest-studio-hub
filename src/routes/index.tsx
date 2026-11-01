@@ -5,6 +5,7 @@ import { ArrowRight, Check, Award, FolderGit2, Image as ImageIcon, Lock } from '
 import { Button } from '@/components/ui/button';
 import { Footer, Reveal, Tilt } from '@/components/agata/primitives';
 import { mascotImage, expressions } from '@/components/agata/Logo';
+import mascotDark from '@/assets/agata-mascot-dark.jpg';
 import { useAgata } from '@/components/agata/AgataExperience';
 import { useAuth } from '@/lib/auth';
 import { useI18n } from '@/lib/i18n';
@@ -54,7 +55,8 @@ function Home() {
   };
   return <main>
     <section ref={heroRef} onPointerMove={onHeroMove} onPointerLeave={() => { mx.set(0); my.set(0); }} className="hero-scene relative overflow-hidden" style={{ perspective: 1200 }}>
-      <motion.img src={mascotImage} alt="Ágata, the hooded mascot, holding an agate crystal" className="hero-mascot" style={reduced ? undefined : { scale: mascotScale, y: mascotScrollY, rotateX: mRotX, rotateY: mRotY }} />
+      <motion.img src={mascotImage} alt="Ágata, the hooded mascot, holding an agate crystal" className="hero-mascot hero-mascot-light" style={reduced ? undefined : { scale: mascotScale, y: mascotScrollY, rotateX: mRotX, rotateY: mRotY }} />
+      <motion.img src={mascotDark} alt="" aria-hidden className="hero-mascot hero-mascot-dark" style={reduced ? undefined : { scale: mascotScale, y: mascotScrollY, rotateX: mRotX, rotateY: mRotY }} />
       <div className="hero-shade" />
       <div className="section-shell hero-content relative">
         <motion.div className="hero-copy max-w-xl" style={reduced ? undefined : { y: copyY, rotateX: copyRot, opacity: copyOpacity, transformOrigin: '50% 0%' }} initial={reduced ? false : { opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .9 }}>
