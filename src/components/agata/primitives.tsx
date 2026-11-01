@@ -21,6 +21,48 @@ export function Tilt({ children, className }: { children: ReactNode; className?:
   return <div className={`tilt-3d ${className ?? ''}`} onPointerMove={onMove} onPointerLeave={onLeave}>{children}</div>;
 }
 export function Eyebrow({ children }: { children: ReactNode }) { return <p className="text-xs font-medium text-mineral">{children}</p>; }
+const footerLink = 'text-sm text-muted-foreground transition-colors hover:text-foreground';
 export function Footer() {
-  return <footer className="section-shell mt-24 border-t py-10 pb-28"><div className="flex flex-col justify-between gap-7 sm:flex-row sm:items-center"><Link to="/"><Wordmark /></Link><div className="flex gap-6 text-xs text-muted-foreground"><Link to="/projects" className="hover:text-foreground">Projects</Link><Link to="/workspaces" className="hover:text-foreground">Workspaces</Link></div></div><div className="mt-10 flex flex-col justify-between gap-3 border-t pt-6 text-[11px] text-muted-foreground sm:flex-row"><p>© 2026 Ágata. Create beyond limits.</p><p>Not affiliated with Roblox Corporation.</p></div></footer>;
+  const year = new Date().getFullYear();
+  return <footer className="section-shell mt-24 border-t pt-16 pb-28">
+    <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <Link to="/"><Wordmark /></Link>
+        <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">A Roblox development platform organised by projects, workspaces and teams. Create beyond limits.</p>
+      </div>
+      <nav aria-label="Platform"><p className="text-xs font-medium uppercase tracking-[0.18em] text-foreground">Platform</p><ul className="mt-4 space-y-3">
+        <li><Link to="/projects" className={footerLink}>Projects</Link></li>
+        <li><Link to="/workspaces" className={footerLink}>Workspaces</Link></li>
+      </ul></nav>
+      <nav aria-label="Account"><p className="text-xs font-medium uppercase tracking-[0.18em] text-foreground">Account</p><ul className="mt-4 space-y-3">
+        <li><Link to="/auth" className={footerLink}>Sign in</Link></li>
+        <li><Link to="/auth" className={footerLink}>Create account</Link></li>
+        <li><Link to="/reset-password" className={footerLink}>Reset password</Link></li>
+      </ul></nav>
+      <nav aria-label="Legal"><p className="text-xs font-medium uppercase tracking-[0.18em] text-foreground">Legal</p><ul className="mt-4 space-y-3">
+        <li><Link to="/terms" className={footerLink}>Terms of Service</Link></li>
+        <li><Link to="/privacy" className={footerLink}>Privacy Policy</Link></li>
+        <li><Link to="/privacy" hash="cookies" className={footerLink}>Cookies</Link></li>
+      </ul></nav>
+    </div>
+    <div className="mt-14 flex flex-col justify-between gap-4 border-t pt-6 text-xs text-muted-foreground md:flex-row md:items-start">
+      <p>© {year} Ágata. All rights reserved.</p>
+      <p className="max-w-xl md:text-right">Ágata is not affiliated with, endorsed by, or sponsored by Roblox Corporation. Roblox and related marks are trademarks of Roblox Corporation. All other trademarks belong to their respective owners.</p>
+    </div>
+  </footer>;
+}
+
+export function LegalPage({ title, updated, sections }: { title: string; updated: string; sections: { id?: string; heading: string; body: string[] }[] }) {
+  return <main>
+    <article className="section-shell max-w-3xl pt-36 pb-16">
+      <p className="text-xs font-medium uppercase tracking-[0.2em] text-mineral">Legal</p>
+      <h1 className="mt-4 text-4xl font-normal tracking-tight sm:text-5xl">{title}</h1>
+      <p className="mt-4 text-sm text-muted-foreground">Last updated {updated}</p>
+      <div className="mt-14 space-y-12">{sections.map((s, i) => <section key={s.heading} id={s.id} className="scroll-mt-28">
+        <h2 className="text-lg font-medium">{i + 1}. {s.heading}</h2>
+        {s.body.map((p) => <p key={p} className="mt-3 leading-relaxed text-muted-foreground">{p}</p>)}
+      </section>)}</div>
+    </article>
+    <Footer />
+  </main>;
 }
