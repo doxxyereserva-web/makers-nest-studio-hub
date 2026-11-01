@@ -11,7 +11,7 @@ import { useAgata } from './AgataExperience';
 export function LanguageSelect({ className = '' }: { className?: string }) {
   const { lang, setLang } = useI18n();
   return <label className={`relative flex items-center ${className}`}><Globe className="pointer-events-none absolute start-3 size-4 text-foreground/60" /><span className="sr-only">Language</span>
-    <select value={lang} onChange={e => setLang(e.target.value)} className="h-9 appearance-none rounded-full bg-transparent ps-9 pe-3 text-xs text-foreground/75 outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring">
+    <select translate="no" value={lang} onChange={e => setLang(e.target.value)} className="h-9 appearance-none rounded-full bg-transparent ps-9 pe-3 text-xs text-foreground/75 outline-none hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring">
       {languages.map(l => <option key={l.code} value={l.code}>{l.name}</option>)}
     </select></label>;
 }

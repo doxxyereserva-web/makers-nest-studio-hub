@@ -27,5 +27,5 @@ export function Mascot({ mood = 'happy', className = 'size-9' }: { mood?: Expres
 }
 export const AgataMark = Mascot;
 export function Wordmark() {
-  return <span className="flex items-center gap-2"><Mascot /><span className="text-xl font-medium">Ágata</span></span>;
+  return <span className="flex items-center gap-2"><Mascot /><span translate="no" className="text-xl font-medium">Ágata</span></span>;
 }
