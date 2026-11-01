@@ -54,8 +54,8 @@ function WorkspacePage() {
 
   return <div>
     <Link to="/dashboard/workspaces" className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground"><ArrowLeft className="size-3.5" />Workspaces</Link>
-    <div className="mt-4 flex flex-col justify-between gap-4 border-b pb-8 sm:flex-row sm:items-end">
-      <div><h1 className="text-4xl font-normal tracking-tight sm:text-5xl">{ws.name}</h1>{ws.description && <p className="mt-3 max-w-lg text-sm text-muted-foreground">{ws.description}</p>}</div>
+    <div className="mt-4 flex flex-col justify-between gap-4 border-b pb-5 sm:flex-row sm:items-end">
+      <div><h1 className="text-2xl font-normal tracking-tight sm:text-3xl">{ws.name}</h1>{ws.description && <p className="mt-3 max-w-lg text-sm text-muted-foreground">{ws.description}</p>}</div>
       {myRole && <Pill>Your role: {roleLabels[myRole]}</Pill>}
     </div>
 
@@ -110,7 +110,7 @@ function WorkspacePage() {
           })}
         </ul>
 
-        <h2 className="mt-12 text-lg">Projects</h2>
+        <h2 className="mt-8 text-lg">Projects</h2>
         {!data.projects.length ? <p className="mt-2 text-sm text-muted-foreground">No projects in this workspace. Create one from Projects and choose this workspace.</p>
           : <ul className="mt-3 divide-y border-y">{data.projects.map(p => <li key={p.id}><Link to="/dashboard/projects/$id" params={{ id: p.id }} className="flex items-center justify-between py-3 text-sm hover:text-mineral">{p.name}<ArrowUpRight className="size-4 text-muted-foreground" /></Link></li>)}</ul>}
       </section>

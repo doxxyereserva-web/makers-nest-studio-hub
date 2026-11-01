@@ -63,7 +63,7 @@ function Creations() {
     {items && !items.length && <EmptyState mood="sleepy" title="Nothing here yet" text="Add your first creation. Only you can see it until you make it public." action={add} />}
 
     {!!items?.length && <ul className="divide-y">
-      {items.map(c => <li key={c.id} className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
+      {items.map(c => <li key={c.id} className="flex flex-col gap-3 py-3.5 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2"><p className="truncate text-base">{c.title}</p><Pill>{kindLabel(c.kind)}</Pill><Pill>{c.visibility === 'public' ? <><Globe className="size-3" />Public</> : <><Lock className="size-3" />Private</>}</Pill></div>
           {c.description && <p className="mt-1.5 line-clamp-2 max-w-xl text-sm text-muted-foreground">{c.description}</p>}
